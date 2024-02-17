@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block title %}Home page{% endblock%}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="" style="background-color: rgb(241, 243, 249);">
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Musician Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Album Rating</th>
+        <th scope="col">Instrument Type</th>
+        <th scope="col">Album Name</th>
+        <th scope="col">Release date</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for i in data %}
+      <tr>
+        <td>{{i.id}}</td>
+        <td>{{i.musician.firstName}} {{i.musician.lastName}}</td>
+        <td>{{i.musician.email}}</td>
+        <td>{{i.rating}}</td>
+        <td>{{i.musician.instrumentType}}</td>
+        <td>{{i.albumName}}</td>
+        <td>{{i.albumReleaseDate}}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+{% endblock %}

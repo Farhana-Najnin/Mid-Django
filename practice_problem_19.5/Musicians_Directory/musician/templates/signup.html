@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load crispy_forms_tags%}
+<div class="" style="background-color:rgb(239, 201, 208);">
+<form  method='post' class="w-50 m-auto">
+    <h4>Registration Here</h4>
+    {% csrf_token %}
+    <!-- {{form | crispy}} -->
+    {% for i in form %}
+    {{i.label_tag}}
+    {{i}}
+    {{i.errors|striptags}}
+    {% endfor %}
+
+    <button class="btn btn-primary mt-3  mb-4 w-50 m-auto" type="submit">Submit</button>
+</form>
+</div>
+{% endblock %}
