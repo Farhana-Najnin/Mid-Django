@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content%}
+<div style="background-color: beige;">
+    <h3 class="text-center p-4">Welcome to CarShopBD . Your Ultimate Destination for Quality Cars!</h3>
+</div>
+<div class="d-flex flex-wrap mt-2 border border-3">
+    <div class="col-6 bg-secondary">
+        <p class="p-3 border border-2"> At CarShopBD, we're passionate about connecting car enthusiasts with their perfect ride.With a commitment to excellence and customer satisfaction, we offer an extensive range of high-quality vehicles to suit every lifestyle and budget.
+            <br\>
+            Explore our diverse inventory of top-notch vehicles, ranging from sleek sedans and versatile SUVs to rugged trucks and eco-friendly hybrids. Each car in our collection is handpicked for its quality, reliability, and performance, ensuring that you drive away with confidence and peace of mind.       
+         </p>
+        <p class="p-3 border border-2">
+            Our dedicated team of automotive experts is here to assist you every step of the way. From helping you find the ideal vehicle to providing flexible financing options, we're committed to delivering personalized service tailored to your needs.Visit us today to browse our showroom, take a test drive, and discover why CarShopBD is the preferred destination for car shoppers across Bangladesh. Your dream car awaits let's make it a reality together!
+        </p>
+
+    </div>
+    <div class="col-6">
+        <img style="width: 90%;" class="rounded m-3 shadow" src="{% static 'download.jpeg' %}" alt="">
+    </div>
+</div>
+
+<div class="" style="background-color: rgb(239, 209, 238);">
+    <h2 class="text-center mb-4 pt-3">Search By Category</h2>
+    <div class="d-flex flex-wrap justify-content-center mx-2">
+        {% for i in Car_category %}  
+            <div class="form-check mb-4">
+                <a class="btn btn-info" href="{%url 'category_wise_car' i.slug %}" class="text-decoration-none">{{i.brandName}}</a> 
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+<div class="h-50 d-flex flex-wrap px-3 pt-5">
+{% for i in data %}
+<div class="col-sm-4 mt-2 mb-4 h-50">
+    <div class="card mx-2">
+        <div style="background-color: rgb(65, 63, 66);" class="card-body rounded h-50">
+            {% if i.image %}
+                <img src="{{i.image.url}}" class="card-img-top rounded" alt="Car">
+            {% endif %}
+            <div class="card-body">
+                <h3 class="card-title"><a class="text-decoration-none" href="{% url 'car_detail' i.id %}">{{i.carName}}</a></h3>
+                <p class="card-text text-danger">Car-price : {{i.carPrice}} tk</p> 
+               <p class="card-text text-white">Quantity : {{i.quantity}}</p>
+               <p class="card-text text-white">Brand : {{i.brand}}</p>
+               <p class="card-text text-white">Description : {{i.description | truncatewords:10}}</p>
+            </div> 
+        </div>
+    </div>
+</div>
+{% endfor %}
+</div>
+
+{% endblock %}
